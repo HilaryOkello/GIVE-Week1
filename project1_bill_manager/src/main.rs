@@ -35,6 +35,32 @@ fn add_bill(bills: &mut HashMap<String, f64>) {
     println!("Bill added.");
 }
 
+fn edit_bill(bills: &mut HashMap<String, f64>) {
+    view_bills(bills);
+    println!("Enter bill name to edit (or press Enter to go back):");
+    let name = match get_input() {
+        Some(n) => n,
+        None => return,
+    };
+    if !bills.contains_key(&name) {
+        println!("Bill not found.");
+        return;
+    }
+    println!("Enter new amount (or press Enter to go back):");
+    let amount: f64 = match get_input() {
+        Some(a) => match a.parse() {
+            Ok(n) => n,
+            Err(_) => {
+                println!("Invalid amount.");
+                return;
+            }
+        },
+        None => return,
+    };
+    bills.insert(name, amount);
+    println!("Bill updated.");
+}
+
 fn remove_bill(bills: &mut HashMap<String, f64>) {
     view_bills(bills);
     println!("Enter bill name to remove:");
@@ -66,14 +92,16 @@ fn main() {
         println!("1. Add bill");
         println!("2. View bills");
         println!("3. Remove bill");
-        println!("4. Quit");
+        println!("4. Edit bill");
+        println!("5. Quit");
         println!("Choose:");
 
         match get_input().as_deref() {
             Some("1") => add_bill(&mut bills),
             Some("2") => view_bills(&bills),
             Some("3") => remove_bill(&mut bills),
-            Some("4") => break,
+            Some("4") => edit_bill(&mut bills),
+            Some("5") => break,
             _ => println!("Invalid choice."),
         }
     }
