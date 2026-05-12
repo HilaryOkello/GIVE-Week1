@@ -35,6 +35,19 @@ fn add_bill(bills: &mut HashMap<String, f64>) {
     println!("Bill added.");
 }
 
+fn remove_bill(bills: &mut HashMap<String, f64>) {
+    view_bills(bills);
+    println!("Enter bill name to remove:");
+    let name = match get_input() {
+        Some(n) => n,
+        None => return,
+    };
+    match bills.remove(&name) {
+        Some(_) => println!("Bill removed."),
+        None => println!("Bill not found."),
+    }
+}
+
 fn view_bills(bills: &HashMap<String, f64>) {
     if bills.is_empty() {
         println!("No bills.");
@@ -52,13 +65,15 @@ fn main() {
         println!("\n-- Bill Manager --");
         println!("1. Add bill");
         println!("2. View bills");
-        println!("3. Quit");
+        println!("3. Remove bill");
+        println!("4. Quit");
         println!("Choose:");
 
         match get_input().as_deref() {
             Some("1") => add_bill(&mut bills),
             Some("2") => view_bills(&bills),
-            Some("3") => break,
+            Some("3") => remove_bill(&mut bills),
+            Some("4") => break,
             _ => println!("Invalid choice."),
         }
     }
