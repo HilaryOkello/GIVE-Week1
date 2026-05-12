@@ -1,3 +1,17 @@
+// Project 1: Interactive Bill Manager
+//
+// Create a command line bills/expenses manager that runs interactively.
+//
+// User stories:
+// * Stage 1:
+//   - I want to add bills, including the name and amount owed.
+//   - I want to view existing bills.
+// * Stage 2:
+//   - I want to remove bills.
+// * Stage 3:
+//   - I want to edit existing bills.
+//   - I want to go back if I change my mind.
+
 use std::collections::HashMap;
 use std::io;
 

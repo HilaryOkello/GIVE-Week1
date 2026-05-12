@@ -1,3 +1,13 @@
+// Try This
+//
+// Program requirements:
+// * Use a match expression with a boolean
+// * Use a match expression with a number
+//
+// Notes:
+// Use a match expression to print whether a boolean is true or false
+// Use a match expression to print the name of a number
+
 fn main() {
     let my_bool = true;
 
